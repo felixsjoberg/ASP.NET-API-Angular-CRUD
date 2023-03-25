@@ -1,1 +1,16 @@
-<p class="homeText">{{homeText}}</p>
+<section class=" text-dark p-5 text-center">
+    <div class="container">
+        <div>
+
+            <a class="fs-5" [routerLink]="['/owner/list']" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                Owner Actions </a>
+            <h1 class="header-text bg-text">{{homeText}}</h1>
+            <p class="fw-bold fs-3">
+                This entire website is built for practice with ASP.NET & Angular.
+                All functionality can be found by navigating around through the navbar.
+            </p>
+        </div>
+    </div>
+
+</section>

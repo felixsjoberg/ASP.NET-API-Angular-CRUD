@@ -33,12 +33,21 @@ namespace webApi.Controllers
             }
             return Ok(owner);
         }
-         public Owner GetOwnerWithDetails(Guid ownerId)
+        [HttpGet("{id}/account")]
+        public async Task<ActionResult<Owner>> GetOwnerWithDetails(int id)
         {
-            return await _ownerRepository.FindByCondition(owner => owner.Id.Equals(ownerId))
-                .Include(ac => ac.Accounts)
-                .FirstOrDefault();
+            var owner = await _ownerRepository.GetOwnerWithDetails(id);
+            if (owner == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                // var ownerResult = _mapper.Map<OwnerDto>(owner);
+                return Ok(owner);
+            }
         }
+
         // [HttpPost(Name = "CreateOwner")]
         // public async Task<IActionResult> CreateOwner([FromBody] Owner owner)
         // {

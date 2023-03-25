@@ -1,10 +1,23 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
+
 namespace webApi.Models;
 
-public class Account
-{
-    public int Id { get; set; }
-    public DateTime DateCreated { get; set; }
-    public string AccountType { get; set; } = null!;
-    public int? OwnerId { get; set; }
+[Table("accounts")]
+    public class Account
+    {
+        [Column("AccountId")]
+        public int Id { get; set; }
 
-}
+        [Required(ErrorMessage = "Date created is required")]
+        public DateTime DateCreated { get; set; }
+
+        [Required(ErrorMessage = "Account type is required")]
+        public string? AccountType { get; set; }
+        [ForeignKey(nameof(Owner))]
+        public int OwnerId { get; set; }
+        [JsonIgnore]
+        public Owner? Owner { get; set; }
+        
+    }

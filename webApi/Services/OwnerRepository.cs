@@ -13,7 +13,7 @@ public class OwnerRepository : IOwnerRepository
         _repositoryContext = repositoryContext;
     }
 
-    public async Task<Owner> GetOwner(int ownerId)
+    public async Task<Owner?> GetOwner(int ownerId)
     {
         return await _repositoryContext.Owners.FindAsync(ownerId);
     }
@@ -22,19 +22,15 @@ public class OwnerRepository : IOwnerRepository
         return await _repositoryContext.Owners.ToListAsync();
     }
 
-    public async Task<Owner> GetOwnerWithDetailsAsync(Guid ownerId)
+    public async Task<Owner> GetOwnerWithDetails(int ownerId)
     {
-        return await _repositoryContext.Owners.Where(owner => owner.Id.Equals(ownerId))
-            .Include(ac => ac.Accounts)
-            .FirstOrDefault();
+        return await _repositoryContext.Owners
+            .Include(owner => owner.Accounts)
+            .FirstOrDefaultAsync(owner => owner.Id == ownerId);
+
     }
 
     public void CreateOwner(Owner owner)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void DeleteOwner(Owner owner)
     {
         throw new NotImplementedException();
     }
@@ -44,5 +40,8 @@ public class OwnerRepository : IOwnerRepository
         throw new NotImplementedException();
     }
 
+    public void DeleteOwner(Owner owner)
+    {
+        throw new NotImplementedException();
+    }
 }
-
