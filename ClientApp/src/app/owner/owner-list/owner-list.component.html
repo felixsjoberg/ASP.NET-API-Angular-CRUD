@@ -1,5 +1,7 @@
 <div class="row">
-    <div class="offset-10 col-md-2 mt-2"> <a href="#">Create owner</a> </div>
+    <div class="offset-10 col-md-2 mt-2">
+        <a [routerLink]="['/owner/create']">Create owner</a>
+    </div>
 </div> <br>
 <div class="row">
     <div class="col-md-12">
@@ -23,8 +25,10 @@
                         <td>{{owner.dateOfBirth | date: 'dd/MM/yyyy'}}</td>
                         <td><button type="button" id="details" class="btn btn-primary"
                                 (click)="getOwnerDetails(owner.id)">Details</button></td>
-                        <td><button type="button" id="update" class="btn btn-success">Update</button></td>
-                        <td><button type="button" id="delete" class="btn btn-danger">Delete</button></td>
+                        <td><button type="button" id="update" class="btn btn-success"
+                                (click)="redirectToUpdatePage(owner.id)">Update</button></td>
+                        <td><button type="button" id="delete" class="btn btn-danger"
+                                (click)="redirectToDeletePage(owner.id)">Delete</button></td>
                     </tr>
                 </tbody>
             </table>

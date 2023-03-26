@@ -32,10 +32,18 @@ export class OwnerListComponent implements OnInit {
         }
       })
   }
-  
+
   public getOwnerDetails = (id) => {
     const detailsUrl: string = `/owner/details/${id}`;
     this.router.navigate([detailsUrl]);
   }
 
+  public redirectToUpdatePage = (id) => {
+    const updateUrl: string = `/owner/update/${id}`;
+    this.router.navigate([updateUrl]);
+  }
+  public redirectToDeletePage = (id) => {
+    const deleteUrl: string = `/owner/delete/${id}`;
+    this.router.navigate([deleteUrl]);
+  }
 }
