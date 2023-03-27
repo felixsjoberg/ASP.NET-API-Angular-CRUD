@@ -32,16 +32,25 @@ public class OwnerRepository : IOwnerRepository
 
     public void CreateOwner(Owner owner)
     {
-        throw new NotImplementedException();
+        _repositoryContext.Owners.Add(owner);
+        _repositoryContext.SaveChanges();
     }
 
-    public void UpdateOwner(Owner owner)
+    public void UpdateOwner(Owner dbOwner,Owner owner)
     {
-        throw new NotImplementedException();
+        dbOwner.Name = owner.Name;
+        dbOwner.Address = owner.Address;
+        dbOwner.DateOfBirth = owner.DateOfBirth;
+        
+        _repositoryContext.Owners.Update(dbOwner);
+        _repositoryContext.SaveChanges();
     }
 
     public void DeleteOwner(Owner owner)
     {
-        throw new NotImplementedException();
+        _repositoryContext.Owners.Remove(owner);
+        _repositoryContext.SaveChanges();
     }
+
+
 }
